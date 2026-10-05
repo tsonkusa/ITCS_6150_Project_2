@@ -1,58 +1,21 @@
-from utils import random_board
-from utils import heuristic
-from utils import get_neighbors
+"""Command-line entry point for the required experiment batches."""
 
-from hill_climbing import hill_climbing
-from hill_climbing import hill_climbing_sideways
+import argparse
+from experiments import run_experiments
 
 
-print("TEST 1: Random board")
-board = random_board(8)
-print("Board:", board)
-print("Length:", len(board))
-print()
+def main():
+    parser = argparse.ArgumentParser(description="Run N-Queens experiments")
+    parser.add_argument("--n", type=int, default=8)
+    parser.add_argument("--seed", type=int, default=6150)
+    parser.add_argument("--max-sideways", type=int, default=100)
+    parser.add_argument("--max-restarts", type=int, default=None,
+                        help="Restart cap; omit to retry until solved")
+    parser.add_argument("--output-dir", default="report")
+    args = parser.parse_args()
+    run_experiments(n=args.n, seed=args.seed, max_sideways=args.max_sideways,
+                    max_restarts=args.max_restarts, output_dir=args.output_dir)
 
 
-print("TEST 2: Heuristic with known solution")
-solution = [0, 4, 7, 5, 2, 6, 1, 3]
-print("Board:", solution)
-print("Heuristic:", heuristic(solution))
-print()
-
-
-print("TEST 3: Heuristic with conflicting board")
-bad_board = [0, 0, 0, 0]
-print("Board:", bad_board)
-print("Heuristic:", heuristic(bad_board))
-print()
-
-
-print("TEST 4: Neighbor generation")
-board = random_board(8)
-neighbors = get_neighbors(board)
-
-print("Board:", board)
-print("Number of neighbors:", len(neighbors))
-print()
-
-
-print("TEST 5: Normal Hill Climbing")
-success, final_board, steps, path = hill_climbing(8)
-
-print("Success:", success)
-print("Final board:", final_board)
-print("Final heuristic:", heuristic(final_board))
-print("Steps:", steps)
-print("Path length:", len(path))
-print()
-
-
-print("TEST 6: Hill Climbing with Sideways Moves")
-success, final_board, steps, path = hill_climbing_sideways(8)
-
-print("Success:", success)
-print("Final board:", final_board)
-print("Final heuristic:", heuristic(final_board))
-print("Steps:", steps)
-print("Path length:", len(path))
-print()
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,19 @@
+{
+  "n": 8,
+  "base_seed": 6150,
+  "max_sideways": 100,
+  "max_restarts": null,
+  "trial_counts": [
+    50,
+    100,
+    200,
+    500,
+    1000,
+    1500
+  ],
+  "batch_design": "Independent batches; independent seed per algorithm/trial",
+  "steps": "Queen moves across all attempts; resets are excluded",
+  "restarts": "Attempts after the initial attempt",
+  "rates": "Percent of complete trials, not individual restart attempts",
+  "missing_averages": "No observations in the success/failure group"
+}
