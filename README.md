@@ -1,8 +1,8 @@
 # Programming Project 2
 
 ## Team Members
-- Your Name (to be added)
-- Partner's Name (to be added)
+- Tarang Sonkusare
+- Janmesh Shroff
 
 ## Description
 Implementation of the N-Queens problem using:
